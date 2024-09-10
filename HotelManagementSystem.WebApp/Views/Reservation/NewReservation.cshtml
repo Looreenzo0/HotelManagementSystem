@@ -1,0 +1,170 @@
+﻿@model HotelManagementSystem.Application.Models.HotelRoomModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Online Reservation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/assets/images/favicon_new.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="~/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <link href="~/assets/css/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+
+<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+    <!-- Start Content-->
+    <div class="container-fluid py-2 pb-4">
+
+        <!-- start page title -->
+        <div class="row">
+
+            <div class="col-xl-12">
+                <div class="card shadow-lg rounded">
+                    <div class="card-header pt-4 pb-3 text-center bg-primary" style="border-radius: 10px;">
+                        <a href="index.html">
+                            <span><img src="~/assets/images/company-logonew.png" alt="" height="50"></span>
+                        </a>
+                        <h2 class="header-title pt-3 text-white"> Online Reservation</h2>
+                    </div>
+                    <div class="card-body">
+
+                        <h5 class="text-center mb-4"> Please fill all the required fields</h5>
+                        <div class="row py-2">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <input type="number" class="form-control form-control-sm" hidden id="RoomId" >
+                                    <input type="text" class="form-control form-control-sm" autocomplete="off" id="SearchRoom" placeholder="Select Room">
+                                    <button type="button" class="input-group-text btn-primary" data-toggle="tooltip" data-placement="bottom" title="Change Room" id="btnReselect">Clear</button>
+                                </div>
+                                <div class="suggestions hidden" id="dropRoom">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-centered dt-responsive nowrap mb-0 table-bordered border-light table-hover" id="RoomTable" style="width:100%">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-sm-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control form-control-sm" id="Name" placeholder="Name" />
+                                    <label for="Name">Full Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-sm-6 pb-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control form-control-sm" id="Address" placeholder="Address" />
+                                    <label for="Address">Address</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control form-control-sm" id="ContactNumber" placeholder="Contact Number" />
+                                    <label for="ContactNumber">Contact Number</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-sm-6 pb-2">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control form-control-sm" id="CheckIn" placeholder="Check-in" />
+                                    <label for="CheckIn">Check-in</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control form-control-sm" id="CheckOut" placeholder="Check-out" />
+                                    <label for="CheckOut">Check-out</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row py-2">
+                            <div class="col-sm-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control form-control-sm" id="Pax" placeholder="No. of Pax" />
+                                    <label for="Pax">No. of Pax</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="no-print justify-between text-center pt-4" style="display: flex; gap: 16px; justify-content: center;">
+                            <a role="button" class="btn btn-primary" id="btnSave" style="border-radius: 20px;"><i class="mdi mdi-magnify search-icon"></i>&nbsp; SUBMIT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loadSpinnerss" id="loadSpinnerss">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+            @* <div class="spinner-border avatar-lg text-primary" role="status"></div> *@
+            <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                &nbsp; Submitting...
+            </button>
+        </div>
+    </div>
+
+    <footer class="footer footer-alt">
+        <script>document.write(new Date().getFullYear())</script> © Hotel Del Rhea - All Rights Reserved.
+    </footer>
+    <script src="~/assets/js/vendor.min.js"></script>
+    <script src="~/assets/js/app.min.js"></script>
+ 
+    @*     <script src="~/assets/js/Action/Disable.js"></script> *@
+    <script src="~/assets/js/vendor/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/vendor/dataTables.bootstrap5.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/assets/js/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+         const connection = new signalR.HubConnectionBuilder()
+             .withUrl("/notificationHub")
+             .configureLogging(signalR.LogLevel.None)
+             .build();
+
+         // connection.on("RegistrationReceive", function (Name) {
+         //     $('#ClientReservationTable').DataTable().ajax.reload();
+         // });
+
+         connection.on("ReceiveErrorMessage", (errorMessage) => {
+             // Handle the error message
+             console.error(`SignalR error: ${errorMessage}`);
+         });
+
+        connection.start().catch(err => console.error(err));
+
+         luxon.Settings.defaultZoneName = 'Asia/Singapore';
+
+        // Get the current date and time
+        var datedw = luxon.DateTime.now();
+
+        // Format the current date for Check-In
+        const formattedDateFrom = datedw.toFormat('yyyy-MM-dd');
+        document.getElementById('CheckIn').value = formattedDateFrom;
+
+        // Set Check-Out to be one day after Check-In
+        const checkOutDate = datedw.plus({ days: 1 });
+        const formattedDateTo = checkOutDate.toFormat('yyyy-MM-dd');
+        document.getElementById('CheckOut').value = formattedDateTo;
+
+    </script>
+    <script src="~/assets/js/Reservation/NewReservation.js"></script>
+</body>
+</html>

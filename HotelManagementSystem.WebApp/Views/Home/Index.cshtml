@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Dashboard</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-success shadow-lg rounded h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-weight: 900;">
+                                Pending Reservation
+                            </div>
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">
+                               5
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <a asp-controller="ManageClient" asp-action="OnlineReservation" role="button"><i class="fas fa-address-card fa-3x text-gray-300"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-info shadow-lg rounded h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-weight: 900;">
+                                Check-In
+                            </div>
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">52</div>
+                        </div>
+                        <div class="col-auto">
+                            <a asp-controller="Commission" asp-action="Index" role="button"><i class="mdi mdi-account-key fa-3x text-gray-300"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+          <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card border-left-info shadow-lg rounded h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-weight: 900;">
+                                Check-out
+                            </div>
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">34</div>
+                        </div>
+                        <div class="col-auto">
+                            <a asp-controller="Commission" asp-action="Index" role="button"><i class="mdi mdi-account-minus fa-3x text-gray-300"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

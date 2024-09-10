@@ -1,0 +1,147 @@
+﻿@model HotelManagementSystem.Application.Models.ReservationModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CN @Model.RefNum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="~/assets/images/favicon_new.ico">
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
+    <link href="~/assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
+    <link href="~/assets/css/custom.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+
+</head>
+
+<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+
+    <!-- Start Content-->
+    <div class="container-fluid p-1">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card shadow-lg rounded">
+                    <div class="card-header pt-4 pb-3 text-center bg-primary" style="border-radius: 10px;">
+
+                        <h2 class="text-white"> Reservation Submitted</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="printable-content">
+                                    <br />
+                                    <div class="text-center pb-2">
+                                        <img src="/assets/images/company-logonew.png" alt="Client Image" style="max-width: 180px; max-height: 180px;">
+                                        <div class="text-center py-2">
+                                            <p style="margin: 0;">Bago Oshiro, Mintal , Davao City</p>
+                                            <p style="margin: 0;">
+                                                +63 995-885-6000
+                                            </p>
+                                            <p style="margin: 0;">
+                                                hoteldelrhea@gmail.com
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h5 class="text-primary">&nbsp; Customer Information</h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row row px-1">
+                                        <div class="col-sm-12">
+                                            <label class="form-label">RN : </label>
+                                            <label>@Model.RefNum</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Name : </label>
+                                            <label>@Model.Name</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Contact Number : </label>
+                                            <label>@Model.ContactNumber</label>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Address : </label>
+                                            <label class="font-weight-bold">@Model.Address</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="form-label">No. of Pax : </label>
+                                            <label id="CitizenshipView" class="font-weight-bold">@Model.Pax</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Check-in : </label>
+                                            <label id="LastNameView" class="font-weight-bold">@Model.CheckIn</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="form-label">Check-out : </label>
+                                            <label class="font-weight-bold">@Model.CheckOut</label>
+                                        </div>
+                                       
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h5 class="text-primary">&nbsp; Room Details</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-row row px-1">
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Room Type : </label>
+                                            <label class="font-weight-bold">@Model.RoomType</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label">Room Rate : </label>
+                                            <input id="roomRate" type="number" hidden value="@Model.RoomRate" />
+                                            <label id="RoomRateView" class="font-weight-bold"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-row row px-1 pt-4">
+                                        <br />
+                                        <div class="col-sm-12">
+                                            <label class="form-label">@Model.Name</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="font-weight-bold">Name of Customer (Signature over Printed Name)</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="no-print justify-between text-center pt-4" style="display: flex; gap: 16px; justify-content: center;">
+                                    <a role="button" id="print-button" class="btn btn-info rounded-lg" style="border-radius: 20px;" onclick="printDetails()"><i class="mdi mdi-printer"></i>&nbsp; Print / Save as PDF</a>
+                                    <a asp-controller="Reservation" asp-action="NewReservation" role="button" class="btn btn-primary" style="border-radius: 20px;"><i class="mdi mdi-plus-circle"></i>&nbsp; New Reservation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <select class="form-select" id="year" name="year" hidden>
+        <option selected value="">Year</option>
+    </select>
+    <footer class="footer footer-alt">
+        <script>document.write(new Date().getFullYear())</script> © Hotel Del Rhea. - All Rights Reserved.
+    </footer>
+    @*   <script src="~/assets/js/Action/Disable.js"></script> *@
+    <script src="~/assets/js/vendor.min.js"></script>
+    <script src="~/assets/js/app.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/Reservation/Success.js"></script>
+</body>
+</html>
+
+

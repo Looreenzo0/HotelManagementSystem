@@ -1,0 +1,286 @@
+/* The Modal (background) */
+.modal-large {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050;
+    padding-top: 20px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border-radius: 10px;
+}
+
+.modal-med {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1049; /* Sit on top */
+    padding-top: 20px;
+    padding: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    /* background-color: #fefefe;*/
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 95%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.hideDetail {
+    font-size: 12px;
+    color: #1A654C;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    background-color: whitesmoke;
+}
+
+table tr.selected {
+    background-color: #4e73df;
+    color: white;
+}
+
+.select2-selection__rendered {
+    line-height: 30px !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 34px !important;
+}
+
+.select2-selection__arrow {
+    height: 30px !important;
+}
+
+table#AddItemTable td:nth-child(7) {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 0px;
+    visibility: hidden;
+}
+
+.hidden-column {
+    display: none;
+}
+
+table#SelectedEditItemTable td:nth-child(1) {
+    display: none;
+}
+
+/*table#SelectedItemTable td:nth-child(1) {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 0px;
+    visibility: hidden;
+}*/
+
+.chart-area {
+    position: relative;
+    height: 10rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .chart-area {
+        height: 20rem;
+    }
+}
+
+.image-viewer {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+    .image-viewer img {
+        width: 100%;
+        transition: transform 0.25s ease;
+    }
+
+.pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    position: relative;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .controls button {
+        margin: 0 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+.image-viewer img {
+    cursor: pointer;
+}
+
+.loadSpinnerss {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+}
+
+.house-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.house-card:hover {
+        transform: scale(1.05);
+}
+
+.brand-image {
+    width: 150px; /* Set a uniform width */
+    height: 150px; /* Set a uniform height */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.drop-zone {
+    border: 2px dashed #808080;
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+    .drop-zone.active {
+        background-color: #e9ecef;
+    }
+
+.preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.file-preview {
+    position: relative;
+    flex: 1 1 calc(25% - 10px);
+    max-width: calc(25% - 10px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+    .file-preview img, .file-preview video, .file-preview .pdf-preview {
+        width: 100%;
+        height: auto;
+        max-height: 150px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .file-preview .pdf-preview {
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+        .file-preview .pdf-preview i {
+            font-size: 48px;
+        }
+
+.remove-file {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+}
+
+@media (max-width: 768px) {
+    .file-preview {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 576px) {
+    .file-preview {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    #attachmentList .list-group-item {
+        font-size: 0.875rem; /* Adjust font size for smaller screens */
+    }
+
+    #attachmentList .btn {
+        font-size: 0.75rem; /* Smaller button size on mobile */
+        padding: 0.25rem 0.5rem; /* Adjust button padding for smaller screens */
+    }
+}
+
+.form-label {
+    font-weight: normal !important; /* or 400 */
+}
+
+
